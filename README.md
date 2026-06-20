@@ -20,8 +20,8 @@
 <details open>
 <summary><h2>📢 Recent Updates</h2></summary>
 
-- *Google Open Knowledge Format (OKF)*: wiki frontmatter follows the [Google OKF](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) schema for knowledge sharing
-- *Entity Pages*: people, orgs, places, and products as dedicated wiki pages, auto-extracted and kept in sync
+- *Google Open Knowledge Format (OKF)*: wiki frontmatter follows the [Google OKF](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) schema for knowledge sharing.
+- *Entity Pages*: people, orgs, places, and products as dedicated wiki pages, auto-extracted and kept in sync.
 
 </details>
 
