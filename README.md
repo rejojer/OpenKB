@@ -48,7 +48,7 @@ OpenKB has two layers: a **wiki foundation** that compiles and maintains your kn
 - **Query & chat:** One-off questions or multi-turn conversations over your wiki, with persisted sessions to resume.
 - **Skill Factory:** Distills redistributable agent skills from your wiki.
 - **OKF-ready:** Wiki pages follow the [Google OKF](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) specification for knowledge sharing.
-- **Obsidian-compatible:** The wiki is plain `.md` files with cross-links. Open it in Obsidian for graph view and browsing.
+- **Obsidian-compatible:** The wiki is plain `.md` files with cross-links. Opens in Obsidian for graph view.
 
 # 🚀 Getting Started
 
