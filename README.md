@@ -20,7 +20,7 @@
 <details open>
 <summary><h2>📢 Recent Updates</h2></summary>
 
-- *Google Open Knowledge Format (OKF)*: Wiki frontmatter follows the [Google OKF](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) schema for knowledge sharing.
+- *Google Open Knowledge Format (OKF)*: Wiki pages follow the [Google OKF](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) specification for knowledge sharing.
 - *Entity Pages*: People, orgs, places, and products as dedicated wiki pages, auto-extracted and kept in sync.
 
 </details>
@@ -47,7 +47,7 @@ OpenKB has two layers: a **wiki foundation** that compiles and maintains your kn
 - **Compiled wiki:** The LLM compiles your documents into summaries, concept pages, entity pages, and cross-links, all kept in sync.
 - **Query & chat:** One-off questions or multi-turn conversations over your wiki, with persisted sessions to resume.
 - **Skill Factory:** Distill redistributable agent skills from your wiki.
-- **OKF-ready:** Wiki frontmatter follows Google's [Open Knowledge Format (OKF)](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) schema for knowledge sharing.
+- **OKF-ready:** Wiki pages follow the [Google OKF](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) specification for knowledge sharing.
 - **Obsidian-compatible:** The wiki is plain `.md` files with cross-links. Open it in Obsidian for graph view and browsing.
 
 # 🚀 Getting Started
