@@ -155,7 +155,7 @@ wiki/                                  │            ← the foundation
 | **LLM reads** | Full text | Document trees |
 | **Result** | summary + concepts | summary + concepts |
 
-Short documents are read in full by the LLM. Long PDFs are indexed by [PageIndex](https://github.com/VectifyAI/PageIndex) into a hierarchical tree representation. The LLM reads the tree instead of the full text, enabling accurate and scalable retrieval for long documents.
+Short documents are read in full by the LLM. Long PDFs are processed by [PageIndex](https://github.com/VectifyAI/PageIndex) into a hierarchical tree index. The LLM reads the tree instead of the full text, enabling accurate and scalable retrieval for long documents.
 
 ### Knowledge Compilation
 
