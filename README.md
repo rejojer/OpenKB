@@ -103,7 +103,7 @@ openkb skill new my-expert "Reason like an expert on <your-topic>"
 
 ### Set up your LLM
 
-OpenKB supports [multiple LLM providers](https://docs.litellm.ai/docs/providers) (OpenAI, Claude, Gemini, and more) via [LiteLLM](https://github.com/BerriAI/litellm) (pinned to a [safe version](https://docs.litellm.ai/blog/security-update-march-2026)).
+OpenKB supports [multiple LLM providers](https://docs.litellm.ai/docs/providers) (OpenAI, Claude, Gemini, etc.) via [LiteLLM](https://github.com/BerriAI/litellm) (pinned to a [safe version](https://docs.litellm.ai/blog/security-update-march-2026)).
 
 Set your model during `openkb init` or in [`.openkb/config.yaml`](#configuration) using the `provider/model` LiteLLM format (e.g. `anthropic/claude-sonnet-4-6`). OpenAI models can omit the prefix (e.g. `gpt-5.4`).
 
@@ -146,7 +146,7 @@ wiki/                                  │            ← the foundation
             the wiki)           agent skills)           report / …
 ```
 
-### Short vs. Long Document Handling
+### Short vs Long Document Handling
 
 | | Short documents | Long documents (PDF ≥ 20 pages) |
 |---|---|---|
@@ -155,7 +155,7 @@ wiki/                                  │            ← the foundation
 | **LLM reads** | Full text | Document trees |
 | **Result** | summary + concepts | summary + concepts |
 
-Short documents are read in full by the LLM. Long PDFs are indexed by PageIndex into a hierarchical tree with summaries. The LLM reads the tree instead of the full text, enabling better retrieval from long documents.
+Short documents are read in full by the LLM. Long PDFs are indexed by [PageIndex](https://github.com/VectifyAI/PageIndex) into a hierarchical tree representation. The LLM reads the tree instead of the full text, enabling accurate and scalable retrieval for long documents.
 
 ### Knowledge Compilation
 
@@ -223,7 +223,7 @@ A "generator" reads from the compiled wiki and produces something usable: an ans
 
 ### (i) 💬 Query & Chat — *ask the wiki*
 
-`openkb query "..."` answers a single question. `openkb chat` is interactive -- each turn carries history, so you can dig into a topic without re-typing context. Both use the same underlying wiki and retrieval primitives.
+`openkb query "..."` answers a single question. `openkb chat` is interactive — each turn carries history, so you can dig into a topic without re-typing context. Both use the same underlying wiki and retrieval primitives.
 
 ```bash
 openkb query "What does the literature say about attention scaling?"
@@ -241,15 +241,15 @@ Inside a chat, type `/` to access slash commands (Tab to complete).
 <summary><i>More slash commands:</i></summary>
 <br>
 
-- `/help` -- list available commands
-- `/status` -- show knowledge base status
-- `/list` -- list all documents
-- `/add <path>` -- add a document or directory without leaving the chat
-- `/skill new <skill-name> "<intent>"` -- compile a skill from this chat (see below)
-- `/save [name]` -- export the transcript to `wiki/explorations/`
-- `/clear` -- start a fresh session (the current one stays on disk)
-- `/lint` -- run knowledge base lint
-- `/exit` -- exit (Ctrl-D also works)
+- `/help` — list available commands
+- `/status` — show knowledge base status
+- `/list` — list all documents
+- `/add <path>` — add a document or directory without leaving the chat
+- `/skill new <skill-name> "<intent>"` — compile a skill from this chat (see below)
+- `/save [name]` — export the transcript to `wiki/explorations/`
+- `/clear` — start a fresh session (the current one stays on disk)
+- `/lint` — run knowledge base lint
+- `/exit` — exit (Ctrl-D also works)
 
 </details>
 
@@ -257,7 +257,7 @@ Inside a chat, type `/` to access slash commands (Tab to complete).
 
 ### (ii) 🛠 Skill Factory — *drop in a book; out comes a digital expert.*
 
-The newest generator. `openkb skill new` distills an [agent skill](https://docs.claude.com/en/docs/build-with-claude/skills) from any subset of your wiki -- a portable folder that major agents (Claude Code, Codex, etc.) can install and load natively. Drop in a book's worth of papers; out comes a specialist that other agents can call on.
+The newest generator. `openkb skill new` distills an [agent skill](https://docs.claude.com/en/docs/build-with-claude/skills) from any subset of your wiki, a portable folder that major agents (Claude Code, Codex, etc.) can install and load natively. Drop in a book's worth of papers; out comes a specialist that other agents can call on.
 
 ```bash
 openkb skill new karpathy-thinking \
@@ -379,7 +379,7 @@ Subscription-based providers that authenticate via OAuth device flow (e.g. `chat
 
 ### PageIndex Setup
 
-Long-document retrieval is a [known challenge](https://x.com/karpathy/status/2039823314982744522) for LLMs. [PageIndex](https://github.com/VectifyAI/PageIndex) solves this with vectorless, reasoning-based retrieval by building a hierarchical tree index that lets LLMs reason over the structure for context-aware retrieval.
+Long-document retrieval is a [known challenge](https://x.com/karpathy/status/2039823314982744522) for LLMs. [PageIndex](https://github.com/VectifyAI/PageIndex) solves this with vectorless, reasoning-based retrieval, by building a hierarchical tree index that lets LLMs reason over the index for context-aware retrieval.
 
 PageIndex runs locally by default using the [open-source version](https://github.com/VectifyAI/PageIndex), with no external dependencies required.
 
@@ -399,7 +399,7 @@ PAGEINDEX_API_KEY=your_pageindex_api_key
 
 ### AGENTS.md
 
-The `wiki/AGENTS.md` file defines wiki structure and conventions -- it is the LLM's instruction manual for maintaining the wiki. Customize it to change how your wiki is organized.
+The `wiki/AGENTS.md` file defines wiki structure and conventions. It's the LLM's instruction manual for maintaining the wiki. Customize it to change how your wiki is organized.
 
 The LLM reads `AGENTS.md` from disk at runtime, so your edits take effect immediately.
 
@@ -416,7 +416,7 @@ The wiki is a directory of Markdown files with `[[wikilinks]]`. Obsidian renders
 
 ### Using with Claude Code / Codex / Gemini CLI
 
-OpenKB ships a `SKILL.md` so any agent can read your compiled wiki. No extra runtime, no MCP setup -- just install the skill once.
+OpenKB ships a `SKILL.md` so any agent can read your compiled wiki. No extra runtime, no MCP setup, just install the skill once.
 
 <details>
 <summary><i>Claude Code:</i></summary>
@@ -471,12 +471,12 @@ The skill is read-only. It won't run `openkb add`, `remove`, or `lint --fix` wit
 
 ### The Stack
 
-- [PageIndex](https://github.com/VectifyAI/PageIndex) -- Vectorless, reasoning-based document indexing and retrieval
-- [markitdown](https://github.com/microsoft/markitdown) -- Universal file-to-markdown conversion
-- [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) -- Agent framework (supports non-OpenAI models via LiteLLM)
-- [LiteLLM](https://github.com/BerriAI/litellm) -- Multi-provider LLM gateway
-- [Click](https://click.palletsprojects.com/) -- CLI framework
-- [watchdog](https://github.com/gorakhargosh/watchdog) -- Filesystem monitoring
+- [PageIndex](https://github.com/VectifyAI/PageIndex) — Vectorless, reasoning-based document indexing and retrieval
+- [markitdown](https://github.com/microsoft/markitdown) — Universal file-to-markdown conversion
+- [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) — Agent framework (supports non-OpenAI models via LiteLLM)
+- [LiteLLM](https://github.com/BerriAI/litellm) — Multi-provider LLM gateway
+- [Click](https://click.palletsprojects.com/) — CLI framework
+- [watchdog](https://github.com/gorakhargosh/watchdog) — Filesystem monitoring
 
 ### Roadmap
 
@@ -496,16 +496,16 @@ Apache 2.0. See [LICENSE](LICENSE).
 
 ### 🌐 Open-Source Ecosystem
 
-Other open-source projects from the PageIndex ecosystem:
+Other [open-source projects](https://docs.pageindex.ai/open-source) from the PageIndex ecosystem:
 
-- [PageIndex](https://github.com/VectifyAI/PageIndex) -- Vectorless, reasoning-based RAG framework for long documents
-- [ChatIndex](https://github.com/VectifyAI/ChatIndex) -- Tree indexing and retrieval for long conversational histories and memory
-- [ConDB](https://github.com/VectifyAI/ConDB) -- A KV-cache native context database for tree-based retrieval at scale
-- [PageIndex MCP](https://github.com/VectifyAI/pageindex-mcp) -- MCP server for PageIndex
+- [PageIndex](https://github.com/VectifyAI/PageIndex): Vectorless, reasoning-based RAG framework for long documents
+- [ChatIndex](https://github.com/VectifyAI/ChatIndex): Tree indexing and retrieval for long conversational histories and memory
+- [ConDB](https://github.com/VectifyAI/ConDB): A KV-cache native context database for tree-based retrieval at scale
+- [PageIndex MCP](https://github.com/VectifyAI/pageindex-mcp): MCP server for PageIndex
 
 ### Support Us
 
-If you find OpenKB useful, please give us a star -- and check out [**PageIndex**](https://github.com/VectifyAI/PageIndex) too!  
+If you find OpenKB useful, please give us a star 🌟 — and check out [**PageIndex**](https://github.com/VectifyAI/PageIndex) too!  
 
 <div>
 
